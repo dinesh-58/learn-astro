@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 const pageTitle = "About Me";
 
 const identity = {
@@ -13,6 +14,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -22,12 +27,27 @@ const goal = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+		<style define:vars={{skillColor, fontWeight, textCase}}>
+			:root {
+				--nativeVar: navy;
+			}
+			h1 {
+				color: purple;
+				font-size: 4rem;
+			}
+			.skill {
+				color: var(--skillColor);
+				/* color: var(--nativeVar); */
+				font-weight: var(--fontWeight);
+				text-transform: var(--textCase);
+			}
+		</style>
 	</head>
 	<body>
 		<a href="/">Home</a>
 		<a href="/about/">About</a>
 		<a href="/blog/">Blog</a>
-		<h1>{pageTitle}</h1>
+		<h1 class="test">{pageTitle}</h1>
 		<p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.</p>
 		<ul>
 			<li>My name is {identity.firstName}</li>
@@ -38,7 +58,7 @@ const goal = 3;
 		</ul>
 		<p>My skills are:</p>
 		<ul>
-			{skills.map(s => <li>{s}</li>)}
+			{skills.map(s => <li class="skill">{s}</li>)}
 		</ul>
 		{happy && <p>I am happy to be learning Astro!</p>}
 
