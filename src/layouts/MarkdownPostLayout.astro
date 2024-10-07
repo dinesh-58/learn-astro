@@ -16,6 +16,15 @@ const { frontmatter } = Astro.props;
 		margin-right: 1em;
 		border: 1px solid black;
 		padding: 2px 4px;
+		background: gray;
+		&:hover {
+			opacity: 0.8;
+		}
+
+		a {
+			text-decoration: none;
+			color: unset;
+		}
 	}
 	.description {
 		opacity: 70%;
@@ -37,7 +46,7 @@ const { frontmatter } = Astro.props;
 				<p>Written by {frontmatter.author}</p>
 				<p>Published on: {frontmatter.pubDate.toString().slice(0,10)}</p>
 			</div>
-			<ul class="tags">{frontmatter.tags.map(t => <li>{t}</li>)}</ul>
+			<ul class="tags">{frontmatter.tags.map(t => <li><a href={`/tags/${t}`} >{t}</a></li>)}</ul>
 		</aside>
 		<hr />
 		<img class="cover-img" alt={frontmatter.image.alt} src={frontmatter.image.url}/>
